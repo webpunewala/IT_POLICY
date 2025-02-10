@@ -3,271 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <style>
-        :root {
-            --primary-color: #2563eb;
-            --primary-hover: #1d4ed8;
-            --background: #f8fafc;
-            --surface: #ffffff;
-            --text: #1e293b;
-            --text-secondary: #64748b;
-            --border: #e2e8f0;
-            --error: #ef4444;
-            --success: #10b981;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--background);
-            color: var(--text);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 100%;
-            padding: 16px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 640px) {
-            .container {
-                max-width: 640px;
-                padding: 24px;
-            }
-        }
-
-        .form-header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .form-header h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            margin-bottom: 8px;
-        }
-
-        .form-header p {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-        }
-
-        .form-card {
-            background: var(--surface);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.875rem;
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .input-field {
-            position: relative;
-            display: flex;
-            align-items: center;
-        }
-
-        .input-field input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            background: var(--surface);
-            transition: all 0.2s ease;
-            appearance: none;
-            -webkit-appearance: none;
-        }
-
-        .input-field input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .input-field input::placeholder {
-            color: var(--text-secondary);
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 14px 24px;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 24px;
-        }
-
-        .submit-button:active {
-            transform: scale(0.98);
-            background: var(--primary-hover);
-        }
-
-        .error-message {
-            color: var(--error);
-            font-size: 0.75rem;
-            margin-top: 4px;
-            display: none;
-        }
-
-        .input-error {
-            border-color: var(--error) !important;
-        }
-
-        .input-error + .error-message {
-            display: block;
-        }
-
-        /* Mobile-specific styles */
-        @media (max-width: 640px) {
-            .form-card {
-                border-radius: 12px;
-                padding: 20px;
-                margin: 0 -16px;
-            }
-
-            .input-field input {
-                font-size: 16px; /* Prevents zoom on iOS */
-            }
-
-            .submit-button {
-                padding: 16px 24px;
-                font-size: 16px;
-            }
-        }
-
-        /* Bottom Sheet Modal for Mobile */
-        .modal {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: var(--surface);
-            border-radius: 24px 24px 0 0;
-            padding: 24px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease-out;
-            z-index: 1000;
-        }
-
-        .modal.active {
-            transform: translateY(0);
-        }
-
-        .modal-backdrop {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-backdrop.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        /* Modern Footer */
-        .app-footer {
-            padding: 24px 16px;
-            text-align: center;
-            background: var(--surface);
-            margin-top: 40px;
-            border-top: 1px solid var(--border);
-        }
-
-        .app-footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .app-footer .copyright {
-            color: var(--text-secondary);
-            font-size: 0.875rem;
-            margin-top: 8px;
-        }
-    </style>
+    <title>IT Asset Policy Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <div class="form-header">
-            <h2>IT Asset Policy Form</h2>
-            <p>Complete the form to generate your asset policy document</p>
+<body class="bg-gray-50">
+    <!-- Main Container -->
+    <div class="min-h-screen w-full px-4 py-6 md:py-8">
+        <div class="max-w-md mx-auto">
+            <!-- Form Header -->
+            <div class="text-center mb-6 md:mb-8">
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-2">IT Asset Policy Form</h2>
+                <p class="text-sm text-gray-600">Complete the form to generate your asset policy document</p>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-white rounded-lg shadow p-4 md:p-6 mb-6">
+                <form id="assetForm" class="space-y-4 md:space-y-6">
+                    <!-- Full Name Input -->
+                    <div>
+                        <label for="userName" class="block text-sm font-medium text-gray-700 mb-1">
+                            Full Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="userName" 
+                            placeholder="Enter your full name"
+                            class="w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        >
+                        <p class="mt-1 text-xs text-red-600 hidden error-message">Please enter your full name</p>
+                    </div>
+
+                    <!-- User ID Input -->
+                    <div>
+                        <label for="userId" class="block text-sm font-medium text-gray-700 mb-1">
+                            User ID
+                        </label>
+                        <input 
+                            type="text" 
+                            id="userId" 
+                            placeholder="Enter your user ID"
+                            class="w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        >
+                        <p class="mt-1 text-xs text-red-600 hidden error-message">Please enter your user ID</p>
+                    </div>
+
+                    <!-- Serial Number Input -->
+                    <div>
+                        <label for="serialNumber" class="block text-sm font-medium text-gray-700 mb-1">
+                            Laptop Serial Number
+                        </label>
+                        <input 
+                            type="text" 
+                            id="serialNumber" 
+                            placeholder="Enter laptop serial number"
+                            class="w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        >
+                        <p class="mt-1 text-xs text-red-600 hidden error-message">Please enter the laptop serial number</p>
+                    </div>
+
+                    <!-- Department Input -->
+                    <div>
+                        <label for="department" class="block text-sm font-medium text-gray-700 mb-1">
+                            Department
+                        </label>
+                        <input 
+                            type="text" 
+                            id="department" 
+                            placeholder="Enter your department"
+                            class="w-full px-3 py-2 text-base border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                            required
+                        >
+                        <p class="mt-1 text-xs text-red-600 hidden error-message">Please enter your department</p>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button 
+                        type="button" 
+                        onclick="if(validateForm()) generateDoc()"
+                        class="w-full bg-blue-600 text-white py-3 px-4 rounded-md font-medium text-base hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors mt-4"
+                    >
+                        Generate Policy Document
+                    </button>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <footer class="text-center py-4 border-t border-gray-200">
+                <a href="https://calling24o7.com" target="_blank" class="text-blue-600 text-sm font-medium hover:text-blue-700">
+                    calling24o7.com
+                </a>
+                <p class="mt-2 text-xs text-gray-600">© 2024 calling24o7.com. All rights reserved.</p>
+            </footer>
         </div>
-
-        <div class="form-card">
-            <form id="assetForm">
-                <div class="input-group">
-                    <label for="userName">Full Name</label>
-                    <div class="input-field">
-                        <input type="text" id="userName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="error-message">Please enter your full name</div>
-                </div>
-
-                <div class="input-group">
-                    <label for="userId">User ID</label>
-                    <div class="input-field">
-                        <input type="text" id="userId" placeholder="Enter your user ID" required>
-                    </div>
-                    <div class="error-message">Please enter your user ID</div>
-                </div>
-
-                <div class="input-group">
-                    <label for="serialNumber">Laptop Serial Number</label>
-                    <div class="input-field">
-                        <input type="text" id="serialNumber" placeholder="Enter laptop serial number" required>
-                    </div>
-                    <div class="error-message">Please enter the laptop serial number</div>
-                </div>
-
-                <div class="input-group">
-                    <label for="department">Department</label>
-                    <div class="input-field">
-                        <input type="text" id="department" placeholder="Enter your department" required>
-                    </div>
-                    <div class="error-message">Please enter your department</div>
-                </div>
-
-                <button type="button" class="submit-button" onclick="if(validateForm()) generateDoc()">
-                    Generate Policy Document
-                </button>
-            </form>
-        </div>
-
-        <footer class="app-footer">
-            <a href="https://calling24o7.com" target="_blank">calling24o7.com</a>
-            <div class="copyright">© 2024 calling24o7.com. All rights reserved.</div>
-        </footer>
     </div>
 
     <script>
@@ -321,11 +151,14 @@ This document is automatically generated and is valid without a signature when a
             let isValid = true;
             
             inputs.forEach(input => {
+                const errorMessage = input.parentElement.nextElementSibling;
                 if (!input.value.trim()) {
-                    input.style.borderColor = 'red';
+                    input.classList.add('border-red-500');
+                    errorMessage.classList.remove('hidden');
                     isValid = false;
                 } else {
-                    input.style.borderColor = '#ddd';
+                    input.classList.remove('border-red-500');
+                    errorMessage.classList.add('hidden');
                 }
             });
             
