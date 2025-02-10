@@ -6,10 +6,10 @@
     <title>IT Asset Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex justify-center items-center h-screen">
-    <div class="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg text-center">
-        <h2 class="text-2xl font-bold text-blue-600 mb-4">IT Asset Policy Form</h2>
-        <form id="assetForm" class="space-y-4">
+<body class="bg-gray-100 flex flex-col justify-center items-center h-screen">
+    <div class="w-full h-full p-6 flex flex-col justify-center items-center bg-white rounded-2xl shadow-lg text-center">
+        <h2 class="text-3xl font-bold text-blue-600 mb-6">IT Asset Policy Form</h2>
+        <form id="assetForm" class="space-y-4 w-full max-w-lg">
             <div>
                 <label for="userName" class="block text-left font-medium">User Name:</label>
                 <input type="text" id="userName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
@@ -33,6 +33,10 @@
             <button type="button" onclick="generateDoc()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition">Generate Policy Document</button>
         </form>
     </div>
+
+    <footer class="absolute bottom-4 w-full text-center text-gray-600">
+        © 2025 <a href="https://calling24o7.com" class="text-blue-500 hover:underline">Calling24o7.com</a>. All rights reserved.
+    </footer>
 
     <script>
         function generateDoc() {
