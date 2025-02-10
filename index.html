@@ -2,66 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>IT Asset Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 flex flex-col justify-center items-center h-screen">
-    <div class="w-full h-full p-6 flex flex-col justify-center items-center bg-white rounded-2xl shadow-lg text-center">
-        <h2 class="text-3xl font-bold text-blue-600 mb-6">IT Asset Policy Form</h2>
-        <form id="assetForm" class="space-y-4 w-full max-w-lg">
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Register</h2>
+        
+        <form action="#" method="POST" class="space-y-4">
             <div>
-                <label for="userName" class="block text-left font-medium">User Name:</label>
-                <input type="text" id="userName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+                <label for="name" class="block text-gray-600">Full Name</label>
+                <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
             
             <div>
-                <label for="userId" class="block text-left font-medium">User ID:</label>
-                <input type="text" id="userId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+                <label for="email" class="block text-gray-600">Email Address</label>
+                <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
-            
+
             <div>
-                <label for="serialNumber" class="block text-left font-medium">Laptop Serial Number:</label>
-                <input type="text" id="serialNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+                <label for="password" class="block text-gray-600">Password</label>
+                <input type="password" id="password" name="password" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
-            
+
             <div>
-                <label for="department" class="block text-left font-medium">Department:</label>
-                <input type="text" id="department" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+                <label for="confirm-password" class="block text-gray-600">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
             </div>
-            
-            <button type="button" onclick="generateDoc()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition">Generate Policy Document</button>
+
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" id="terms" name="terms" required class="text-blue-500 focus:ring-2 focus:ring-blue-500">
+                <label for="terms" class="text-gray-600">I agree to the Terms and Conditions</label>
+            </div>
+
+            <div>
+                <button type="submit" class="w-full bg-blue-500 text-white p-3 rounded-md hover:bg-blue-600 transition duration-200">Register</button>
+            </div>
         </form>
+
+        <div class="mt-4 text-center">
+            <p class="text-gray-600">Already have an account? <a href="#" class="text-blue-500 hover:text-blue-600">Login here</a></p>
+        </div>
     </div>
 
-    <footer class="absolute bottom-4 w-full text-center text-gray-600">
-        © 2025 <a href="https://calling24o7.com" class="text-blue-500 hover:underline">Calling24o7.com</a>. All rights reserved.
-    </footer>
-
-    <script>
-        function generateDoc() {
-            const userName = document.getElementById('userName').value;
-            const userId = document.getElementById('userId').value;
-            const serialNumber = document.getElementById('serialNumber').value;
-            const department = document.getElementById('department').value;
-            
-            const policyText = `
-                IT Asset Policy
-                ----------------------------
-                User Name: ${userName}
-                User ID: ${userId}
-                Laptop Serial Number: ${serialNumber}
-                Department: ${department}
-                
-                I acknowledge that I have received the above laptop and agree to follow company IT policies.
-            `;
-            
-            const blob = new Blob([policyText], { type: 'application/msword' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'IT_Asset_Policy.doc';
-            link.click();
-        }
-    </script>
 </body>
 </html>
