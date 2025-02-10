@@ -1,27 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Asset Form</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f6f9fc 0%, #edf2f7 100%);
+            color: #2d3748;
+            min-height: 100vh;
+        }
+        
+        h2 {
+            color: #1a202c;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        form {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4299e1, #667eea);
+        }
+        
+        .input-group {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #4a5568;
+            transition: color 0.2s ease;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.15);
+            background-color: white;
+        }
+
+        input::placeholder {
+            color: #a0aec0;
+        }
+
+        .input-group:focus-within label {
+            color: #4299e1;
+        }
+        
+        button {
+            background: linear-gradient(90deg, #4299e1, #667eea);
+            color: white;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(66, 153, 225, 0.2);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-header h2 {
+            margin: 0;
+            background: linear-gradient(90deg, #4299e1, #667eea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding: 30px;
+            color: #718096;
+            font-size: 14px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        footer a {
+            color: #4299e1;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 8px;
+        }
+
+        footer a:hover {
+            background-color: #ebf8ff;
+            color: #3182ce;
+        }
+
+        .footer-logo {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .footer-text {
+            margin: 10px 0;
+            color: #4a5568;
+        }
+
+        .copyright {
+            font-size: 12px;
+            color: #a0aec0;
+            margin-top: 15px;
+        }
+
+        /* Add loading animation for button */
+        button.loading {
+            position: relative;
+            pointer-events: none;
+        }
+
+        button.loading::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            top: 50%;
+            left: 50%;
+            margin: -10px 0 0 -10px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Error state styling */
+        .input-error {
+            border-color: #fc8181 !important;
+            background-color: #fff5f5 !important;
+        }
+
+        .error-message {
+            color: #e53e3e;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .input-error + .error-message {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <h2>IT Asset Policy Form</h2>
+    <div class="form-header">
+        <h2>IT Asset Policy Form</h2>
+    </div>
+    
     <form id="assetForm">
-        <label for="userName">User Name:</label>
-        <input type="text" id="userName" required><br><br>
+        <div class="input-group">
+            <label for="userName">User Name</label>
+            <input type="text" id="userName" placeholder="Enter your full name" required>
+            <div class="error-message">Please enter your full name</div>
+        </div>
         
-        <label for="userId">User ID:</label>
-        <input type="text" id="userId" required><br><br>
+        <div class="input-group">
+            <label for="userId">User ID</label>
+            <input type="text" id="userId" placeholder="Enter your user ID" required>
+            <div class="error-message">Please enter your user ID</div>
+        </div>
         
-        <label for="serialNumber">Laptop Serial Number:</label>
-        <input type="text" id="serialNumber" required><br><br>
+        <div class="input-group">
+            <label for="serialNumber">Laptop Serial Number</label>
+            <input type="text" id="serialNumber" placeholder="Enter laptop serial number" required>
+            <div class="error-message">Please enter the laptop serial number</div>
+        </div>
         
-        <label for="department">Department:</label>
-        <input type="text" id="department" required><br><br>
+        <div class="input-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" placeholder="Enter your department" required>
+            <div class="error-message">Please enter your department</div>
+        </div>
         
-        <button type="button" onclick="generateDoc()">Generate Policy Document</button>
+        <button type="button" onclick="if(validateForm()) generateDoc()">Generate Policy Document</button>
     </form>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="https://calling24o7.com" target="_blank">
+                calling24o7.com
+            </a>
+        </div>
+        <div class="footer-text">
+            IT Asset Management Solutions
+        </div>
+        <div class="copyright">
+            © 2024 calling24o7.com. All rights reserved.
+        </div>
+    </footer>
 
     <script>
         function generateDoc() {
@@ -30,15 +262,36 @@
             const serialNumber = document.getElementById('serialNumber').value;
             const department = document.getElementById('department').value;
             
+            const currentDate = new Date().toLocaleDateString();
             const policyText = `
-                IT Asset Policy
-                ----------------------------
-                User Name: ${userName}
-                User ID: ${userId}
-                Laptop Serial Number: ${serialNumber}
-                Department: ${department}
-                
-                I acknowledge that I have received the above laptop and agree to follow company IT policies.
+                                    IT ASSET POLICY DOCUMENT
+                                    ========================
+
+Date: ${currentDate}
+
+USER INFORMATION
+---------------
+User Name: ${userName}
+User ID: ${userId}
+Department: ${department}
+
+ASSET INFORMATION
+----------------
+Laptop Serial Number: ${serialNumber}
+
+ACKNOWLEDGMENT
+-------------
+I, ${userName}, acknowledge that I have received the above-mentioned laptop and agree to:
+
+1. Follow all company IT security policies
+2. Protect the device from damage and unauthorized access
+3. Report any security incidents or loss immediately
+4. Return the device upon termination of employment
+
+Signature: _____________________
+Date: ${currentDate}
+
+This document is automatically generated and is valid without a signature when accompanied by electronic verification.
             `;
             
             const blob = new Blob([policyText], { type: 'application/msword' });
@@ -47,6 +300,22 @@
             link.download = 'IT_Asset_Policy.doc';
             link.click();
         }
+
+        function validateForm() {
+            const inputs = document.querySelectorAll('#assetForm input');
+            let isValid = true;
+            
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = 'red';
+                    isValid = false;
+                } else {
+                    input.style.borderColor = '#ddd';
+                }
+            });
+            
+            return isValid;
+        }
     </script>
 </body>
-</html>
+</html> 
