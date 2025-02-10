@@ -1,71 +1,63 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>IT Asset Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-100 font-roboto">
-    <div class="container mx-auto p-4">
-        <div class="bg-white p-6 rounded-lg shadow-lg max-w-md mx-auto">
-            <h2 class="text-2xl font-bold mb-4 text-center">IT Asset Form</h2>
-            <form id="assetForm" class="space-y-4">
-                <div>
-                    <label for="serialNumber" class="block text-sm font-medium text-gray-700">Laptop Serial Number</label>
-                    <input type="text" id="serialNumber" name="serialNumber" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div>
-                    <label for="userId" class="block text-sm font-medium text-gray-700">User ID</label>
-                    <input type="text" id="userId" name="userId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div>
-                    <label for="userName" class="block text-sm font-medium text-gray-700">User Name</label>
-                    <input type="text" id="userName" name="userName" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div>
-                    <label for="department" class="block text-sm font-medium text-gray-700">Department</label>
-                    <input type="text" id="department" name="department" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div>
-                    <label for="issueDate" class="block text-sm font-medium text-gray-700">Issue Date</label>
-                    <input type="date" id="issueDate" name="issueDate" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div>
-                    <label for="returnDate" class="block text-sm font-medium text-gray-700">Expected Return Date</label>
-                    <input type="date" id="returnDate" name="returnDate" class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" required>
-                </div>
-                <div class="flex justify-end">
-                    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Generate Document</button>
-                </div>
-            </form>
-        </div>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="w-full max-w-md bg-white p-6 rounded-2xl shadow-lg text-center">
+        <h2 class="text-2xl font-bold text-blue-600 mb-4">IT Asset Policy Form</h2>
+        <form id="assetForm" class="space-y-4">
+            <div>
+                <label for="userName" class="block text-left font-medium">User Name:</label>
+                <input type="text" id="userName" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+            </div>
+            
+            <div>
+                <label for="userId" class="block text-left font-medium">User ID:</label>
+                <input type="text" id="userId" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+            </div>
+            
+            <div>
+                <label for="serialNumber" class="block text-left font-medium">Laptop Serial Number:</label>
+                <input type="text" id="serialNumber" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+            </div>
+            
+            <div>
+                <label for="department" class="block text-left font-medium">Department:</label>
+                <input type="text" id="department" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring focus:ring-blue-300" required>
+            </div>
+            
+            <button type="button" onclick="generateDoc()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-700 transition">Generate Policy Document</button>
+        </form>
     </div>
 
     <script>
-        document.getElementById('assetForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const serialNumber = document.getElementById('serialNumber').value;
-            const userId = document.getElementById('userId').value;
+        function generateDoc() {
             const userName = document.getElementById('userName').value;
+            const userId = document.getElementById('userId').value;
+            const serialNumber = document.getElementById('serialNumber').value;
             const department = document.getElementById('department').value;
-            const issueDate = document.getElementById('issueDate').value;
-            const returnDate = document.getElementById('returnDate').value;
-
-            const docContent = `
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>IT Asset Policy Document</title>
-                </head>
-                <body>
-                    <h1>IT Asset Policy Document</h1>
-                    <p><strong>Laptop Serial Number:</strong> ${serialNumber}</p>
-                    <p><strong>User ID:</strong> ${userId}</p>
-                    <p><strong>User Name:</strong> ${userName}</p>
-                    <p><strong>Department:</strong> ${department}</p>
-                    <p><strong>Issue Date:</strong> ${issueDate}</p>
-                    <p><strong>Expected Return Date:</strong> ${returnDate}</p>
-                </body>
-                </html>
+            
+            const policyText = `
+                IT Asset Policy
+                ----------------------------
+                User Name: ${userName}
+                User ID: ${userId}
+                Laptop Serial Number: ${serialNumber}
+                Department: ${department}
+                
+                I acknowledge that I have received the above laptop and agree to follow company IT policies.
+            `;
+            
+            const blob = new Blob([policyText], { type: 'application/msword' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'IT_Asset_Policy.doc';
+            link.click();
+        }
+    </script>
+</body>
+</html>
